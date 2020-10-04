@@ -160,3 +160,4 @@ for (let i = 0; i < barTitles.length; i++) {
     let currSlideIdx = +barTitles[i].getAttribute("data-id") + 1;
     mySwiper.slideTo(currSlideIdx);
   });
+}
