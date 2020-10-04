@@ -13,6 +13,7 @@ function projectx_post_types() {
       'edit_item' => 'Edit Car',
       'all_items' => 'All Cars',
       'singular_name' => 'Car'
+    ),
     'menu_icon' => 'dashicons-car'
   ));
 }
