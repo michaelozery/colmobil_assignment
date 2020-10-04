@@ -155,7 +155,6 @@ for (let i = 0; i < 4; i++) {
 }
 
 for (let i = 0; i < barTitles.length; i++) {
-  console.log("clicked!");
   barTitles[i].addEventListener("click", function () {
     let currSlideIdx = +barTitles[i].getAttribute("data-id") + 1;
     mySwiper.slideTo(currSlideIdx);
