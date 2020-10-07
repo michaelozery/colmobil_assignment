@@ -19,7 +19,7 @@ const mySwiper = new Swiper(".swiper-container", {
       },
   pagination: {
     el: ".swiper-pagination",
-    renderBullet: function (index, className) {
+    renderBullet: (index, className) => {
       return `<span class=${className}>
         <div class="progress-bar-active"></div>
         <span class="progress-bar-title"></span>
@@ -69,7 +69,6 @@ const activateProgressBar = () => {
     let progressBar = document.querySelector(
       ".swiper-pagination-bullet-active .progress-bar-active"
     );
-
     milSecPassed = 0;
     interval = setInterval(() => {
       accumulateWidth(progressBar);
@@ -78,7 +77,7 @@ const activateProgressBar = () => {
   }
 };
 
-mySwiper.on("slideChange", function () {
+mySwiper.on("slideChange", () => {
   if (isMobile) {
     document
       .querySelector(".swiper-pagination-bullet-active .progress-bar-active")
@@ -93,13 +92,13 @@ mySwiper.on("slideChange", function () {
   }
 });
 
-mySwiper.on("touchStart", function (swiper, event) {
+mySwiper.on("touchStart", (swiper, event) => {
   if (isMobile) {
     touchStart = event.clientX;
   }
 });
 
-mySwiper.on("touchMove", function (swiper, event) {
+mySwiper.on("touchMove", (swiper, event) => {
   if (isMobile) {
     let current = event.touches[0].clientX;
     document
@@ -108,7 +107,7 @@ mySwiper.on("touchMove", function (swiper, event) {
   }
 });
 
-mySwiper.on("touchEnd", function (swiper, event) {
+mySwiper.on("touchEnd", (swiper, event) => {
   if (isMobile) {
     const percentageUnit = 82;
 
@@ -130,7 +129,7 @@ if (isMobile) {
   activateProgressBar();
 }
 
-window.addEventListener("resize", function (event) {
+window.addEventListener("resize", (event) => {
   let newWidth = window.innerWidth;
   if (newWidth <= MOBILE_WIDTH) {
     isMobile = true;
@@ -155,7 +154,7 @@ for (let i = 0; i < 4; i++) {
 }
 
 for (let i = 0; i < barTitles.length; i++) {
-  barTitles[i].addEventListener("click", function () {
+  barTitles[i].addEventListener("click", () => {
     let currSlideIdx = +barTitles[i].getAttribute("data-id") + 1;
     mySwiper.slideTo(currSlideIdx);
   });
