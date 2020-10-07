@@ -8,7 +8,7 @@ const STOP_SVG = `<svg width="4em" height="4em" viewBox="0 0 16 16" class="bi bi
 const MOBILE_WIDTH = 500;
 let isMobile = $(window).width() <= MOBILE_WIDTH;
 
-var mySwiper = new Swiper(".swiper-container", {
+const mySwiper = new Swiper(".swiper-container", {
   loop: true,
   effect: "fade",
   autoplay: isMobile
@@ -22,19 +22,19 @@ var mySwiper = new Swiper(".swiper-container", {
     renderBullet: function (index, className) {
       return `<span class=${className}>
         <div class="progress-bar-active"></div>
-        <span class="progress-bar-title">${index + 1}</span>
+        <span class="progress-bar-title"></span>
         </span>`;
     },
   },
 });
 
-var touchStart;
 let interval;
 let timeout;
+let touchStart = 0;
 let milSecPassed = 0;
 let timeLeft = 5000;
-var paginations = $(".progress-bar-title");
-var labels = $(".pagination-labels span");
+let paginations = $(".progress-bar-title");
+let labels = $(".pagination-labels span");
 let pauseButton = document.querySelector(".pause-btn");
 let barTitles = document.querySelectorAll(".progress-bar-title");
 
@@ -95,13 +95,13 @@ mySwiper.on("slideChange", function () {
 
 mySwiper.on("touchStart", function (swiper, event) {
   if (isMobile) {
-    touchStart = event.touches[0].clientX;
+    touchStart = event.clientX;
   }
 });
 
 mySwiper.on("touchMove", function (swiper, event) {
   if (isMobile) {
-    var current = event.touches[0].clientX;
+    let current = event.touches[0].clientX;
     document
       .querySelector(".swiper-pagination-bullets")
       .style.setProperty("--swipe-movement", current - touchStart + "px");
@@ -131,7 +131,7 @@ if (isMobile) {
 }
 
 window.addEventListener("resize", function (event) {
-  var newWidth = window.innerWidth;
+  let newWidth = window.innerWidth;
   if (newWidth <= MOBILE_WIDTH) {
     isMobile = true;
     for (let i = 0; i < 4; i++) {
